@@ -1,19 +1,7 @@
 'use strict';
 
-const Homey = require('homey');
-const ZigBeeLightDevice = require("homey-meshdriver").ZigBeeLightDevice;
+const TuyaZigBeeLightDevice = require('../../lib/TuyaZigBeeLightDevice');
 
-class rgb_led_strip extends ZigBeeLightDevice {
-
-    /*     async onMeshInit() {
-
-        await super.onMeshInit();
-
-        this.enableDebug();
-        this.printNode();
-
-    } */
-
-}
+class rgb_led_strip extends TuyaZigBeeLightDevice {}
 
 module.exports = rgb_led_strip;

@@ -1,45 +1,16 @@
 {
     "class": "light",
-    "fullCapabilities": [
+    "capabilities": [
       "onoff",
       "dim",
       "light_hue",
       "light_saturation",
       "light_mode"
     ],
-    "capabilities": [
-      "onoff",
-      "dim"
-    ],
-    "fullCapabilitiesOptions": {
-      "dim": {
-          "opts": {
-          "duration": true
-          }
-      },
-      "light_hue": {
-          "opts": {
-          "duration": true
-          }
-      },
-      "light_saturation": {
-          "opts": {
-          "duration": true
-          }
-      },
-      "onoff": {
-          "setOnDim": false
-        }
-    },
     "capabilitiesOptions": {
-      "dim": {
-          "opts": {
-          "duration": true
-          }
-      },
       "onoff": {
-          "setOnDim": false
-        }
+        "setOnDim": false
+      }
     },
     "images": {
       "large": "{{driverAssetsPath}}/images/large.png",

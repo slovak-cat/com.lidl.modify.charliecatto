@@ -1,9 +1,9 @@
 {
     "id": "rgb_spot_GU10",
     "name": {
-      "en": "RGB Spot GU10"
+      "en": "Livarno Lux RGBW Spot GU10"
     },
-    "$extends": ["light_color"],
+    "$extends": ["light_color_ambiance"],
     "energy": {
       "approximation": {
         "usageOn": 5,
@@ -17,8 +17,12 @@
       "productId": [
         "TS0505A"
       ],
-      "deviceId": 269,
-      "profileId": 260,
+      "endpoints": {
+        "1": {
+          "clusters": [0, 3, 4, 5, 6, 8, 768],
+          "bindings": [6, 8, 768]
+        }
+      },
       "learnmode": {
         "image": "{{driverAssetsPath}}/icon.svg",
         "instruction": {
@@ -26,5 +30,5 @@
         }
       }
     }
-
-}
+  
+  }

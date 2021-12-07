@@ -1,14 +1,14 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.lidl",
-  "version": "0.1.0",
-  "compatibility": ">=4.2.0 <5.0.0",
-  "sdk": 2,
+  "version": "0.1.10",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
   "name": {
     "en": "Lidl Smart Home"
   },
   "description": {
-    "en": "Lidl Smart Home"
+    "en": "Discover the benefits"
   },
   "tags": {
     "en": [
@@ -18,7 +18,13 @@
       "Switch",
       "LED",
       "Light",
-      "RGB"
+      "RGB",
+      "Door",
+      "Window",
+      "Motion",
+      "Sensor",
+      "Christmas",
+      "Socket"
     ]
   },
   "category": [
@@ -43,11 +49,246 @@
       }
     }
   },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Johan Bendz",
+        "email": "johan_bendz@hotmail.com"
+      },
+      {
+        "name": "Martijn Aben",
+        "email": "lidl@escabe.org"
+      }
+    ]
+  },
+  "flow": {
+    "actions": [
+      {
+        "title": {
+          "en": "Start effect"
+        },
+        "hint": {
+          "en": "Choose a light pattern and a speed for it. You can also choose what colors the pattern should have, this is not mandatory."
+        },
+        "args": [
+          {
+            "name": "christmas_lights_device",
+            "type": "device",
+            "filter": "driver_id=christmas_lights"
+          },
+          {
+            "type": "dropdown",
+            "name": "effect_name",
+            "title": {
+              "en": "Effect"
+            },
+            "values": [
+              {
+                "id": "steady",
+                "label": {
+                  "en": "Steady"
+                }
+              },
+              {
+                "id": "snow",
+                "label": {
+                  "en": "Snow"
+                }
+              },
+              {
+                "id": "rainbow",
+                "label": {
+                  "en": "Rainbow"
+                }
+              },
+              {
+                "id": "snake",
+                "label": {
+                  "en": "Snake"
+                }
+              },
+              {
+                "id": "twinkle",
+                "label": {
+                  "en": "Twinkle"
+                }
+              },
+              {
+                "id": "firework",
+                "label": {
+                  "en": "Firework"
+                }
+              },
+              {
+                "id": "horizontal_flag",
+                "label": {
+                  "en": "Horizontal Flag"
+                }
+              },
+              {
+                "id": "waves",
+                "label": {
+                  "en": "Waves"
+                }
+              },
+              {
+                "id": "updown",
+                "label": {
+                  "en": "Up and Down"
+                }
+              },
+              {
+                "id": "vintage",
+                "label": {
+                  "en": "Vintage"
+                }
+              },
+              {
+                "id": "fading",
+                "label": {
+                  "en": "Fading"
+                }
+              },
+              {
+                "id": "collide",
+                "label": {
+                  "en": "Collide"
+                }
+              },
+              {
+                "id": "strobe",
+                "label": {
+                  "en": "Strobe"
+                }
+              },
+              {
+                "id": "sparkles",
+                "label": {
+                  "en": "Sparkles"
+                }
+              },
+              {
+                "id": "carnaval",
+                "label": {
+                  "en": "Carnaval"
+                }
+              },
+              {
+                "id": "glow",
+                "label": {
+                  "en": "Glow"
+                }
+              }
+            ]
+          },
+          {
+            "type": "range",
+            "name": "effect_speed",
+            "title": {
+              "en": "Speed"
+            },
+            "label": "/64",
+            "min": 0,
+            "max": 64,
+            "step": 1
+          },
+          {
+            "type": "color",
+            "name": "effect_color_0"
+          },
+          {
+            "type": "color",
+            "name": "effect_color_1"
+          },
+          {
+            "type": "color",
+            "name": "effect_color_2"
+          },
+          {
+            "type": "color",
+            "name": "effect_color_3"
+          },
+          {
+            "type": "color",
+            "name": "effect_color_4"
+          },
+          {
+            "type": "color",
+            "name": "effect_color_5"
+          },
+          {
+            "type": "color",
+            "name": "effect_color_6"
+          },
+          {
+            "type": "color",
+            "name": "effect_color_7"
+          },
+          {
+            "type": "color",
+            "name": "effect_color_8"
+          }
+        ],
+        "id": "start_effect"
+      }
+    ]
+  },
   "drivers": [
+    {
+      "id": "christmas_lights",
+      "name": {
+        "en": "Melinera Christmas Lights"
+      },
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "dim",
+        "light_hue",
+        "light_saturation",
+        "lidl_xmas_mode"
+      ],
+      "images": {
+        "large": "/drivers/christmas_lights/assets/images/large.png",
+        "small": "/drivers/christmas_lights/assets/images/small.png"
+      },
+      "energy": {
+        "approximation": {
+          "usageOn": 0,
+          "usageOff": 0
+        }
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "_TZE200_s8gkrkxk"
+        ],
+        "productId": [
+          "TS0601"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              6,
+              61184
+            ],
+            "bindings": [
+              6,
+              61184
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/christmas_lights/assets/icon.svg",
+          "instruction": {
+            "en": "Push the F button on the Christmas Lights controller for aprox 5-10 seconds and release, lights should start to flash slowly."
+          }
+        }
+      }
+    },
     {
       "id": "plug",
       "name": {
-        "en": "Smart Plug without metering"
+        "en": "SilverCrest Smart Plug without metering"
       },
       "class": "socket",
       "capabilities": [
@@ -69,8 +310,19 @@
         "productId": [
           "TS011F"
         ],
-        "deviceId": 266,
-        "profileId": 260,
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              4,
+              5,
+              6
+            ],
+            "bindings": [
+              6
+            ]
+          }
+        },
         "learnmode": {
           "instruction": {
             "en": "Press and hold down on/off switch for aprox 5 seconds until the LED blinks rapidly."
@@ -81,43 +333,15 @@
     },
     {
       "class": "light",
-      "fullCapabilities": [
+      "capabilities": [
         "onoff",
         "dim",
         "light_hue",
         "light_saturation",
+        "light_temperature",
         "light_mode"
       ],
-      "capabilities": [
-        "onoff",
-        "dim"
-      ],
-      "fullCapabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "light_hue": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "light_saturation": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "onoff": {
-          "setOnDim": false
-        }
-      },
       "capabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
-          }
-        },
         "onoff": {
           "setOnDim": false
         }
@@ -128,7 +352,7 @@
       },
       "id": "rgb_bulb_E14",
       "name": {
-        "en": "RGB Bulb E14"
+        "en": "Livarno Lux RGBW Bulb E14"
       },
       "energy": {
         "approximation": {
@@ -143,8 +367,24 @@
         "productId": [
           "TS0505A"
         ],
-        "deviceId": 269,
-        "profileId": 260,
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              8,
+              768
+            ],
+            "bindings": [
+              6,
+              8,
+              768
+            ]
+          }
+        },
         "learnmode": {
           "image": "/drivers/rgb_bulb_E14/assets/icon.svg",
           "instruction": {
@@ -152,63 +392,19 @@
           }
         }
       },
-      "settings": [
-        {
-          "id": "transition_time",
-          "type": "number",
-          "label": {
-            "en": "Transition Time"
-          },
-          "hint": {
-            "en": "This setting determines the time in seconds it takes to dim from one level to another."
-          },
-          "value": 1,
-          "attr": {
-            "min": 0,
-            "max": 6553
-          }
-        }
-      ]
+      "settings": []
     },
     {
       "class": "light",
-      "fullCapabilities": [
+      "capabilities": [
         "onoff",
         "dim",
         "light_hue",
         "light_saturation",
+        "light_temperature",
         "light_mode"
       ],
-      "capabilities": [
-        "onoff",
-        "dim"
-      ],
-      "fullCapabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "light_hue": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "light_saturation": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "onoff": {
-          "setOnDim": false
-        }
-      },
       "capabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
-          }
-        },
         "onoff": {
           "setOnDim": false
         }
@@ -219,7 +415,7 @@
       },
       "id": "rgb_bulb_E27",
       "name": {
-        "en": "RGB Bulb E27"
+        "en": "Livarno Lux RGBW Bulb E27"
       },
       "energy": {
         "approximation": {
@@ -234,8 +430,24 @@
         "productId": [
           "TS0505A"
         ],
-        "deviceId": 269,
-        "profileId": 260,
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              8,
+              768
+            ],
+            "bindings": [
+              6,
+              8,
+              768
+            ]
+          }
+        },
         "learnmode": {
           "image": "/drivers/rgb_bulb_E27/assets/icon.svg",
           "instruction": {
@@ -243,63 +455,82 @@
           }
         }
       },
-      "settings": [
-        {
-          "id": "transition_time",
-          "type": "number",
-          "label": {
-            "en": "Transition Time"
-          },
-          "hint": {
-            "en": "This setting determines the time in seconds it takes to dim from one level to another."
-          },
-          "value": 1,
-          "attr": {
-            "min": 0,
-            "max": 6553
-          }
-        }
-      ]
+      "settings": []
     },
     {
       "class": "light",
-      "fullCapabilities": [
+      "capabilities": [
         "onoff",
         "dim",
         "light_hue",
         "light_saturation",
+        "light_temperature",
         "light_mode"
       ],
-      "capabilities": [
-        "onoff",
-        "dim"
-      ],
-      "fullCapabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "light_hue": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "light_saturation": {
-          "opts": {
-            "duration": true
-          }
-        },
+      "capabilitiesOptions": {
         "onoff": {
           "setOnDim": false
         }
       },
-      "capabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
+      "images": {
+        "large": "/drivers/rgb_led_light_bar/assets/images/large.png",
+        "small": "/drivers/rgb_led_light_bar/assets/images/small.png"
+      },
+      "id": "rgb_led_light_bar",
+      "name": {
+        "en": "Livarno Lux RGBW Light Bar"
+      },
+      "energy": {
+        "approximation": {
+          "usageOn": 8,
+          "usageOff": 0.2
+        }
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "_TZ3000_gek6snaj"
+        ],
+        "productId": [
+          "TS0505A"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              8,
+              768
+            ],
+            "bindings": [
+              6,
+              8,
+              768
+            ]
           }
         },
+        "learnmode": {
+          "image": "/drivers/rgb_led_light_bar/assets/icon.svg",
+          "instruction": {
+            "en": "Power on to enter pairing mode."
+          }
+        }
+      },
+      "settings": []
+    },
+    {
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "dim",
+        "light_hue",
+        "light_saturation",
+        "light_temperature",
+        "light_mode"
+      ],
+      "capabilitiesOptions": {
         "onoff": {
           "setOnDim": false
         }
@@ -310,7 +541,7 @@
       },
       "id": "rgb_led_strip",
       "name": {
-        "en": "RGB LED Strip"
+        "en": "Livarno Lux RGBW LED Strip"
       },
       "energy": {
         "approximation": {
@@ -325,8 +556,24 @@
         "productId": [
           "TS0505A"
         ],
-        "deviceId": 269,
-        "profileId": 260,
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              8,
+              768
+            ],
+            "bindings": [
+              6,
+              8,
+              768
+            ]
+          }
+        },
         "learnmode": {
           "image": "/drivers/rgb_led_strip/assets/icon.svg",
           "instruction": {
@@ -334,63 +581,82 @@
           }
         }
       },
-      "settings": [
-        {
-          "id": "transition_time",
-          "type": "number",
-          "label": {
-            "en": "Transition Time"
-          },
-          "hint": {
-            "en": "This setting determines the time in seconds it takes to dim from one level to another."
-          },
-          "value": 1,
-          "attr": {
-            "min": 0,
-            "max": 6553
-          }
-        }
-      ]
+      "settings": []
     },
     {
       "class": "light",
-      "fullCapabilities": [
+      "capabilities": [
         "onoff",
         "dim",
         "light_hue",
         "light_saturation",
+        "light_temperature",
         "light_mode"
       ],
-      "capabilities": [
-        "onoff",
-        "dim"
-      ],
-      "fullCapabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "light_hue": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "light_saturation": {
-          "opts": {
-            "duration": true
-          }
-        },
+      "capabilitiesOptions": {
         "onoff": {
           "setOnDim": false
         }
       },
-      "capabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
+      "images": {
+        "large": "/drivers/rgb_mood_light/assets/images/large.png",
+        "small": "/drivers/rgb_mood_light/assets/images/small.png"
+      },
+      "id": "rgb_mood_light",
+      "name": {
+        "en": "Livarno Lux RGBW Mood Light"
+      },
+      "energy": {
+        "approximation": {
+          "usageOn": 8,
+          "usageOff": 0.2
+        }
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "_TZ3000_9cpuaca6"
+        ],
+        "productId": [
+          "TS0505A"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              8,
+              768
+            ],
+            "bindings": [
+              6,
+              8,
+              768
+            ]
           }
         },
+        "learnmode": {
+          "image": "/drivers/rgb_mood_light/assets/icon.svg",
+          "instruction": {
+            "en": "Power on to enter pairing mode."
+          }
+        }
+      },
+      "settings": []
+    },
+    {
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "dim",
+        "light_hue",
+        "light_saturation",
+        "light_temperature",
+        "light_mode"
+      ],
+      "capabilitiesOptions": {
         "onoff": {
           "setOnDim": false
         }
@@ -401,7 +667,7 @@
       },
       "id": "rgb_spot_GU10",
       "name": {
-        "en": "RGB Spot GU10"
+        "en": "Livarno Lux RGBW Spot GU10"
       },
       "energy": {
         "approximation": {
@@ -416,8 +682,24 @@
         "productId": [
           "TS0505A"
         ],
-        "deviceId": 269,
-        "profileId": 260,
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              8,
+              768
+            ],
+            "bindings": [
+              6,
+              8,
+              768
+            ]
+          }
+        },
         "learnmode": {
           "image": "/drivers/rgb_spot_GU10/assets/icon.svg",
           "instruction": {
@@ -425,56 +707,313 @@
           }
         }
       },
+      "settings": []
+    },
+    {
+      "class": "light",
+      "capabilities": [
+        "onoff",
+        "dim",
+        "light_hue",
+        "light_saturation",
+        "light_temperature",
+        "light_mode"
+      ],
+      "capabilitiesOptions": {
+        "onoff": {
+          "setOnDim": false
+        }
+      },
+      "images": {
+        "large": "/drivers/rgb_spot_GardenLight/assets/images/large.png",
+        "small": "/drivers/rgb_spot_GardenLight/assets/images/small.png"
+      },
+      "id": "rgb_spot_GardenLight",
+      "name": {
+        "en": "Livarno Lux RGBW Spot Garden light"
+      },
+      "energy": {
+        "approximation": {
+          "usageOn": 8,
+          "usageOff": 1
+        }
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "_TZ3000_h1jnz6l8"
+        ],
+        "productId": [
+          "TS0505A"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              8,
+              768
+            ],
+            "bindings": [
+              6,
+              8,
+              768
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/rgb_spot_GardenLight/assets/icon.svg",
+          "instruction": {
+            "en": "Power on to enter pairing mode."
+          }
+        }
+      },
+      "settings": []
+    },
+    {
+      "id": "smart_door_window_sensor",
+      "name": {
+        "en": "SilverCrest Smart Door & Window Sensor (Lidl)"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "alarm_contact",
+        "alarm_battery",
+        "alarm_tamper"
+      ],
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
+      "images": {
+        "large": "/drivers/smart_door_window_sensor/assets/images/large.png",
+        "small": "/drivers/smart_door_window_sensor/assets/images/small.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "_TZ1800_ejwkn2h2"
+        ],
+        "productId": [
+          "TY0203"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              1280
+            ],
+            "bindings": [
+              1,
+              1280
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/smart_door_window_sensor/assets/icon.svg",
+          "instruction": {
+            "en": "Insert a pin into the single hole on the side of the device and press it gently for aprox 5 seconds until the LED blinks rapidly. If the pairing does not start, press the setup button again for 10-15 seconds until the led stops blinking and then try again."
+          }
+        }
+      },
       "settings": [
         {
-          "id": "transition_time",
+          "id": "batteryThreshold",
           "type": "number",
           "label": {
-            "en": "Transition Time"
+            "en": "Battery Low Alarm Voltage Threshold (%)"
           },
           "hint": {
-            "en": "This setting determines the time in seconds it takes to dim from one level to another."
+            "en": "This setting determines the threshold before a battery alarm is given."
           },
-          "value": 1,
+          "value": 20,
           "attr": {
-            "min": 0,
-            "max": 6553
+            "step": 1,
+            "min": 1,
+            "max": 99
           }
         }
       ]
     },
     {
+      "id": "smart_motion_sensor",
+      "name": {
+        "en": "SilverCrest Smart Motion Sensor (Lidl)"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_battery",
+        "alarm_motion",
+        "alarm_battery",
+        "alarm_tamper"
+      ],
+      "energy": {
+        "batteries": [
+          "CR123A"
+        ]
+      },
+      "images": {
+        "large": "/drivers/smart_motion_sensor/assets/images/large.png",
+        "small": "/drivers/smart_motion_sensor/assets/images/small.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "_TZ1800_fcdjzz3s"
+        ],
+        "productId": [
+          "TY0202"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              1,
+              1280
+            ],
+            "bindings": [
+              1,
+              1280
+            ]
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/smart_motion_sensor/assets/icon.svg",
+          "instruction": {
+            "en": "Insert a pin into the single hole on the side of the device and press it gently for aprox 5 seconds until the LED blinks rapidly. If the pairing does not start, press the setup button again for 10-15 seconds until the led stops blinking and then try again."
+          }
+        }
+      },
+      "settings": [
+        {
+          "id": "batteryThreshold",
+          "type": "number",
+          "label": {
+            "en": "Battery Low Alarm Voltage Threshold (%)"
+          },
+          "hint": {
+            "en": "This setting determines the threshold before a battery alarm is given."
+          },
+          "value": 20,
+          "attr": {
+            "step": 1,
+            "min": 1,
+            "max": 99
+          }
+        }
+      ]
+    },
+    {
+      "id": "socket_power_strip",
+      "name": {
+        "en": "SilverCrest 3 Socket Power Strip"
+      },
+      "class": "socket",
+      "capabilities": [
+        "onoff"
+      ],
+      "capabilitiesOptions": {
+        "measure_power": {
+          "approximated": true
+        }
+      },
+      "images": {
+        "large": "/drivers/socket_power_strip/assets/images/large.png",
+        "small": "/drivers/socket_power_strip/assets/images/small.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "_TZ3000_1obwwnmq",
+          "_TZ3000_vzopcetz"
+        ],
+        "productId": [
+          "TS011F"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              4,
+              5,
+              6
+            ],
+            "bindings": [
+              6
+            ]
+          },
+          "2": {
+            "clusters": [
+              4,
+              5,
+              6
+            ],
+            "bindings": [
+              6
+            ]
+          },
+          "3": {
+            "clusters": [
+              4,
+              5,
+              6
+            ],
+            "bindings": [
+              6
+            ]
+          }
+        },
+        "devices": {
+          "socket2": {
+            "class": "socket",
+            "capabilities": [
+              "onoff"
+            ],
+            "name": {
+              "en": "Power Strip Socket 2"
+            },
+            "energy": {
+              "approximation": {
+                "usageOn": 0,
+                "usageOff": 0
+              }
+            }
+          },
+          "socket3": {
+            "class": "socket",
+            "capabilities": [
+              "onoff"
+            ],
+            "name": {
+              "en": "Power Strip Socket 3"
+            },
+            "energy": {
+              "approximation": {
+                "usageOn": 0,
+                "usageOff": 0
+              }
+            }
+          }
+        },
+        "learnmode": {
+          "instruction": {
+            "en": "A tile for each socket will be created. Press and hold down on/off switch for aprox 5 seconds until the LED blinks rapidly."
+          }
+        }
+      },
+      "settings": []
+    },
+    {
       "class": "light",
-      "fullCapabilities": [
+      "capabilities": [
         "onoff",
         "dim",
         "light_temperature"
       ],
-      "capabilities": [
-        "onoff",
-        "dim"
-      ],
-      "fullCapabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "light_temperature": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "onoff": {
-          "setOnDim": false
-        }
-      },
       "capabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
-          }
-        },
         "onoff": {
           "setOnDim": false
         }
@@ -485,7 +1024,7 @@
       },
       "id": "tunable_bulb_E14",
       "name": {
-        "en": "Tunable Bulb E14"
+        "en": "Livarno Lux Tunable White Bulb E14"
       },
       "energy": {
         "approximation": {
@@ -500,8 +1039,24 @@
         "productId": [
           "TS0502A"
         ],
-        "deviceId": 269,
-        "profileId": 260,
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              8,
+              768
+            ],
+            "bindings": [
+              6,
+              8,
+              768
+            ]
+          }
+        },
         "learnmode": {
           "image": "/drivers/tunable_bulb_E14/assets/icon.svg",
           "instruction": {
@@ -509,56 +1064,16 @@
           }
         }
       },
-      "settings": [
-        {
-          "id": "transition_time",
-          "type": "number",
-          "label": {
-            "en": "Transition Time"
-          },
-          "hint": {
-            "en": "This setting determines the time in seconds it takes to dim from one level to another."
-          },
-          "value": 1,
-          "attr": {
-            "min": 0,
-            "max": 6553
-          }
-        }
-      ]
+      "settings": []
     },
     {
       "class": "light",
-      "fullCapabilities": [
+      "capabilities": [
         "onoff",
         "dim",
         "light_temperature"
       ],
-      "capabilities": [
-        "onoff",
-        "dim"
-      ],
-      "fullCapabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "light_temperature": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "onoff": {
-          "setOnDim": false
-        }
-      },
       "capabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
-          }
-        },
         "onoff": {
           "setOnDim": false
         }
@@ -569,7 +1084,7 @@
       },
       "id": "tunable_bulb_E27",
       "name": {
-        "en": "Tunable Bulb E27"
+        "en": "Livarno Lux Tunable White Bulb E27"
       },
       "energy": {
         "approximation": {
@@ -584,8 +1099,24 @@
         "productId": [
           "TS0502A"
         ],
-        "deviceId": 269,
-        "profileId": 260,
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              8,
+              768
+            ],
+            "bindings": [
+              6,
+              8,
+              768
+            ]
+          }
+        },
         "learnmode": {
           "image": "/drivers/tunable_bulb_E27/assets/icon.svg",
           "instruction": {
@@ -593,56 +1124,16 @@
           }
         }
       },
-      "settings": [
-        {
-          "id": "transition_time",
-          "type": "number",
-          "label": {
-            "en": "Transition Time"
-          },
-          "hint": {
-            "en": "This setting determines the time in seconds it takes to dim from one level to another."
-          },
-          "value": 1,
-          "attr": {
-            "min": 0,
-            "max": 6553
-          }
-        }
-      ]
+      "settings": []
     },
     {
       "class": "light",
-      "fullCapabilities": [
+      "capabilities": [
         "onoff",
         "dim",
         "light_temperature"
       ],
-      "capabilities": [
-        "onoff",
-        "dim"
-      ],
-      "fullCapabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "light_temperature": {
-          "opts": {
-            "duration": true
-          }
-        },
-        "onoff": {
-          "setOnDim": false
-        }
-      },
       "capabilitiesOptions": {
-        "dim": {
-          "opts": {
-            "duration": true
-          }
-        },
         "onoff": {
           "setOnDim": false
         }
@@ -653,7 +1144,7 @@
       },
       "id": "tunable_spot_GU10",
       "name": {
-        "en": "Tunable Spot GU10"
+        "en": "Livarno Lux Tunable White Spot GU10"
       },
       "energy": {
         "approximation": {
@@ -668,8 +1159,24 @@
         "productId": [
           "TS0502A"
         ],
-        "deviceId": 269,
-        "profileId": 260,
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              3,
+              4,
+              5,
+              6,
+              8,
+              768
+            ],
+            "bindings": [
+              6,
+              8,
+              768
+            ]
+          }
+        },
         "learnmode": {
           "image": "/drivers/tunable_spot_GU10/assets/icon.svg",
           "instruction": {
@@ -677,23 +1184,41 @@
           }
         }
       },
-      "settings": [
+      "settings": []
+    }
+  ],
+  "capabilities": {
+    "lidl_xmas_mode": {
+      "title": {
+        "en": "Mode"
+      },
+      "getable": true,
+      "setable": true,
+      "type": "enum",
+      "uiComponent": "picker",
+      "values": [
         {
-          "id": "transition_time",
-          "type": "number",
-          "label": {
-            "en": "Transition Time"
-          },
-          "hint": {
-            "en": "This setting determines the time in seconds it takes to dim from one level to another."
-          },
-          "value": 1,
-          "attr": {
-            "min": 0,
-            "max": 6553
+          "id": "white",
+          "title": {
+            "en": "White",
+            "nl": "Wit"
+          }
+        },
+        {
+          "id": "color",
+          "title": {
+            "en": "Color",
+            "nl": "Kleur"
+          }
+        },
+        {
+          "id": "effect",
+          "title": {
+            "en": "Effect",
+            "nl": "Effect"
           }
         }
       ]
     }
-  ]
+  }
 }

@@ -1,9 +1,9 @@
 {
     "id": "tunable_bulb_E14",
     "name": {
-      "en": "Tunable Bulb E14"
+      "en": "Livarno Lux Tunable White Bulb E14"
     },
-    "$extends": ["light_white"],
+    "$extends": ["light_white_ambiance"],
     "energy": {
       "approximation": {
         "usageOn": 7,
@@ -17,8 +17,12 @@
       "productId": [
         "TS0502A"
       ],
-      "deviceId": 269,
-      "profileId": 260,
+      "endpoints": {
+        "1": {
+          "clusters": [0, 3, 4, 5, 6, 8, 768],
+          "bindings": [6, 8, 768]
+        }
+      },
       "learnmode": {
         "image": "{{driverAssetsPath}}/icon.svg",
         "instruction": {
@@ -26,5 +30,5 @@
         }
       }
     }
-
-}
+  
+  }
